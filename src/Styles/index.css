@@ -12,6 +12,10 @@
   --fs-800: clamp(1.58rem, calc(1.38rem + 0.97vw), 2.25rem);
   --ff-heading: "Syne", sans-serif;
   --ff-base: "Inter", sans-serif;
+  --fw-base-200: 200;
+  --fw-400: 400;
+  --fw-500: 500;
+  --fw-heading-700: 700;
   --clr-white: hsl(67, 100%, 98%);
   --clr-black: #121212;
   --clr-pink: #f4b4fb;
@@ -36,4 +40,27 @@ body {
 .navbar {
   width: 100vw;
   height: var(--nav-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-between;
+  padding-inline: 2rem;
+  font-family: var(--ff-heading);
+  font-size: var(--fs-600);
+  font-weight: 700;
+}
+.navbar .logo {
+  letter-spacing: 0.125rem;
+}
+.navbar .cartIndicator #cartIcon {
+  position: relative;
+}
+.navbar .cartIndicator #cartAmount {
+  background-color: rgba(128, 128, 128, 0.495);
+  width: 2rem;
+  height: 2rem;
+  padding: 0.3rem;
+  border-radius: 100%;
+  position: absolute;
+  top: 5px;
 }/*# sourceMappingURL=index.css.map */
