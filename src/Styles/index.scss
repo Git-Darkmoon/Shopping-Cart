@@ -20,20 +20,27 @@
   --fw-500: 500;
   --fw-heading-700: 700;
 
+  --clr-blackDark: hsl(0, 0%, 7%);
+  --clr-blackLight: hsl(0, 0%, 15%);
+  --clr-gray: hsla(0, 0%, 67%, 0.5);
   --clr-white: hsl(67, 100%, 98%);
-  --clr-black: #131313;
-  --clr-pink: #f4b4fb;
-  --clr-purple: #b289f3;
-  --clr-yellow: #fff390;
-  --clr-orange: #f7b054;
+  --clr-pink: hsl(294, 90%, 85%);
+  --clr-purple: hsl(263, 82%, 75%);
+  --clr-yellow: hsl(54, 100%, 78%);
+  --clr-orange: hsl(34, 91%, 65%);
+  --clr-redish: hsl(0, 82%, 75%);
+  --clr-tan: hsl(357, 41%, 73%);
 
   --nav-height: 6rem;
+
+  --radius: 0.3rem;
 }
 
 @mixin flexCenter($direction: row) {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: $direction;
 }
 
 * {
@@ -43,7 +50,7 @@
 }
 
 body {
-  background-color: var(--clr-black);
+  background-color: var(--clr-blackDark);
 
   font-family: var(--ff-base);
   font-size: var(--fs-200);
@@ -86,14 +93,16 @@ body {
     #cartIcon {
       font-size: var(--fs-600);
       z-index: 10;
-      color: var(--clr-orange);
+      color: var(--clr-tan);
+      cursor: pointer;
     }
+
     #cartAmount {
       width: 1.35rem;
       height: 1.35rem;
       @include flexCenter();
 
-      background-color: hsla(66, 100%, 98%, 0.4);
+      background-color: hsla(66, 100%, 98%, 0.1);
       color: var(--clr-white);
 
       padding: 0.75rem;
@@ -104,6 +113,70 @@ body {
       right: -17px;
 
       font-size: var(--fs-300);
+    }
+  }
+}
+
+.cartContainer {
+  width: 100vw;
+  height: calc(100vh - var(--nav-height));
+
+  display: flex;
+  justify-content: center;
+}
+
+.product {
+  // width: 50%;
+
+  display: flex;
+  height: fit-content;
+
+  padding: 1.35rem;
+
+  background-color: var(--clr-blackLight);
+
+  border-radius: var(--radius);
+
+  .productInfo {
+    @include flexCenter();
+    gap: 10vmax;
+
+    .productDesc {
+      .productRef {
+        color: var(--clr-gray);
+        font-weight: var(--fw-400);
+        font-family: var(--ff-heading);
+      }
+      .productName {
+        font-weight: var(--fw-heading-700);
+        font-size: var(--fs-600);
+        margin-block: 0.35rem;
+      }
+      .productPrice {
+        font-weight: var(--fw-400);
+        font-size: var(--fs-500);
+      }
+    }
+
+    .quantity {
+      @include flexCenter();
+      gap: 2vmax;
+
+      font-size: var(--fs-300);
+
+      .quantityBtn {
+        background-color: transparent;
+        border: none;
+        outline: none;
+        font-size: var(--fs-800);
+        color: var(--clr-gray);
+        cursor: pointer;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: var(--clr-white);
+        }
+      }
     }
   }
 }
