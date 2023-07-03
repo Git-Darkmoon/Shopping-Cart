@@ -1,7 +1,13 @@
 /* eslint-disable react/prop-types */
 import { createContext, useContext, useReducer, useEffect } from "react"
 import reducer from "../reducer"
-import { INCREASE_QUANTITY, DECREASE_QUANTITY, SHOW_DATA } from "../actions"
+import {
+  INCREASE_QUANTITY,
+  DECREASE_QUANTITY,
+  SHOW_DATA,
+  REMOVE_ITEM,
+  CLEAR_CART,
+} from "../actions"
 
 const API_URL = "https://www.course-api.com/react-useReducer-cart-project"
 
@@ -14,11 +20,19 @@ const initialState = {
 export const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
 
-  function increaseQuantity() {
-    dispatch({ type: INCREASE_QUANTITY })
+  function increaseQuantity(id) {
+    dispatch({ type: INCREASE_QUANTITY, payload: { id } })
   }
-  function decreaseQuantity() {
-    dispatch({ type: DECREASE_QUANTITY })
+  function decreaseQuantity(id) {
+    dispatch({ type: DECREASE_QUANTITY, payload: { id } })
+  }
+
+  function removeItem(id) {
+    dispatch({ type: REMOVE_ITEM, payload: { id } })
+  }
+
+  function clearCart() {
+    dispatch({ type: CLEAR_CART })
   }
 
   async function fetchData() {
@@ -34,7 +48,14 @@ export const AppProvider = ({ children }) => {
 
   return (
     <AppContext.Provider
-      value={{ ...state, increaseQuantity, decreaseQuantity, fetchData }}
+      value={{
+        ...state,
+        clearCart,
+        increaseQuantity,
+        decreaseQuantity,
+        removeItem,
+        fetchData,
+      }}
     >
       {children}
     </AppContext.Provider>
