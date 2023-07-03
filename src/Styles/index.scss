@@ -86,6 +86,43 @@ body {
   overflow-x: hidden;
 }
 
+.emptyTitle {
+  width: 100vw;
+  height: calc(100vh - var(--nav-height) - 10rem);
+
+  @include flexCenter();
+  letter-spacing: 2px;
+  color: var(--clr-gray);
+}
+
+.shine {
+  text-transform: uppercase;
+  font-size: var(--fs-800);
+  letter-spacing: 4px;
+  overflow: hidden;
+  background: linear-gradient(
+    90deg,
+    var(--clr-blackLight),
+    var(--clr-white),
+    var(--clr-blackLight)
+  );
+  background-repeat: no-repeat;
+  background-size: 85%;
+  user-select: none;
+  animation: animate 4s linear infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.01);
+}
+
+@keyframes animate {
+  0% {
+    background-position: -500%;
+  }
+  100% {
+    background-position: 500%;
+  }
+}
+
 .navbar {
   width: 100vw;
   height: var(--nav-height);
@@ -134,9 +171,7 @@ body {
 
 .cartContainer {
   width: 100vw;
-  height: calc(100vh - var(--nav-height));
 
-  margin-top: calc(var(--nav-height) / 0.75);
   @include flexCenter(column);
   gap: 1.25rem;
 
@@ -158,11 +193,26 @@ body {
     text-fill-color: transparent;
     -webkit-text-fill-color: transparent;
   }
+
+  .clearBtn {
+    margin-block: 1rem;
+    background-color: transparent;
+    font-size: var(--fs-500);
+    font-weight: var(--fw-base-200);
+    color: var(--clr-gray);
+    border: none;
+    cursor: pointer;
+
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: var(--clr-white);
+    }
+  }
 }
 
 @media (width <= 48rem) {
   .cartContainer {
-    margin-top: 45vmax;
     .product {
       width: 75vw;
       flex-direction: column;
@@ -172,7 +222,8 @@ body {
 }
 
 .product {
-  // width: 50%;
+  width: 60%;
+  max-width: 60vmax;
 
   display: flex;
   height: fit-content;
@@ -201,6 +252,8 @@ body {
 
   .productInfo {
     @include flexCenter();
+    width: 65%;
+    justify-content: space-between;
     gap: 10vmax;
 
     .productDesc {
@@ -264,5 +317,39 @@ body {
         }
       }
     }
+  }
+}
+
+.footer {
+  @include flexCenter(column);
+  width: 100vw;
+  height: 4rem;
+  padding-block: 5rem;
+  gap: 1rem;
+
+  .footer-social {
+    @include flexCenter();
+    width: 100%;
+    height: 5rem;
+    gap: 2rem;
+
+    li {
+      list-style: none;
+    }
+
+    .footer-social__links {
+      font-size: (var(--fs-400));
+      color: var(--clr-gray);
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: var(--clr-white);
+      }
+    }
+  }
+
+  .footer-copyright {
+    font-size: (--fs-300);
+    color: var(--clr-gray);
   }
 }
