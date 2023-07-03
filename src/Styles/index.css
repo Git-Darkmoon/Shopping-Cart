@@ -10,6 +10,7 @@
   --fs-600: clamp(1.25rem, calc(1.09rem + 0.76vw), 1.78rem);
   --fs-700: clamp(1.4rem, calc(1.23rem + 0.86vw), 2rem);
   --fs-800: clamp(1.58rem, calc(1.38rem + 0.97vw), 2.25rem);
+  --fs-900: clamp(2.84rem, calc(2.49rem + 1.74vw), 4.06rem);
   --ff-heading: "Syne", sans-serif;
   --ff-base: "Inter", sans-serif;
   --fw-base-200: 200;
@@ -41,6 +42,7 @@ body {
   font-family: var(--ff-base);
   font-size: var(--fs-200);
   color: var(--clr-white);
+  overflow-x: hidden;
 }
 
 .navbar {
@@ -58,12 +60,7 @@ body {
 .navbar .logo {
   letter-spacing: 0.125rem;
   font-size: var(--fs-800);
-  color: transparent;
-  background-image: linear-gradient(135deg, rgb(247, 176, 84) 0%, rgb(214, 157, 160) 25%, rgb(243, 137, 137) 50%, rgb(221, 161, 144) 75%, rgb(247, 176, 84) 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  text-fill-color: transparent;
-  -webkit-text-fill-color: transparent;
+  color: var(--clr-white);
 }
 .navbar .cartIndicator {
   position: relative;
@@ -71,7 +68,7 @@ body {
 .navbar .cartIndicator #cartIcon {
   font-size: var(--fs-600);
   z-index: 10;
-  color: var(--clr-tan);
+  color: var(--clr-white);
   cursor: pointer;
 }
 .navbar .cartIndicator #cartAmount {
@@ -94,17 +91,61 @@ body {
 .cartContainer {
   width: 100vw;
   height: calc(100vh - var(--nav-height));
+  margin-top: calc(var(--nav-height) / 0.75);
   display: flex;
+  align-items: center;
   justify-content: center;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.cartContainer .cartTitle {
+  letter-spacing: -0.125rem;
+  font-size: var(--fs-900);
+  font-family: var(--ff-heading);
+  font-weight: var(--fw-heading-700);
+  color: transparent;
+  background-image: linear-gradient(90deg, var(--clr-white) 0%, rgb(243, 137, 137) 50%, var(--clr-white) 90%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  text-fill-color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
+@media (width <= 48rem) {
+  .cartContainer {
+    margin-top: 45vmax;
+  }
+  .cartContainer .product {
+    width: 75vw;
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
 .product {
   display: flex;
   height: -moz-fit-content;
   height: fit-content;
-  padding: 1.35rem;
+  padding: 1.25rem;
   background-color: var(--clr-blackLight);
   border-radius: var(--radius);
+}
+.product picture {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+@media (width <= 48rem) {
+  .product picture {
+    text-align: center;
+  }
+  .product picture #productImg {
+    width: -moz-max-content;
+    width: max-content;
+    -o-object-position: center;
+       object-position: center;
+    margin: 0 auto;
+  }
 }
 .product .productInfo {
   display: flex;
@@ -127,23 +168,48 @@ body {
   font-weight: var(--fw-400);
   font-size: var(--fs-500);
 }
+.product .productInfo .productDesc .productRemove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 0.2rem;
+  margin-top: 0.75rem;
+  cursor: pointer;
+  font-size: var(--fs-200);
+  background-color: transparent;
+  outline: none;
+  border: none;
+  color: var(--clr-gray);
+  font-size: var(--fs-200);
+  transition: color 0.2s ease-out;
+}
+.product .productInfo .productDesc .productRemove:hover {
+  color: var(--clr-redish);
+}
+.product .productInfo .productDesc .productRemove:active {
+  scale: 0.95;
+}
 .product .productInfo .quantity {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: row;
   gap: 2vmax;
-  font-size: var(--fs-300);
+  font-size: var(--fs-600);
 }
 .product .productInfo .quantity .quantityBtn {
   background-color: transparent;
   border: none;
   outline: none;
-  font-size: var(--fs-800);
+  font-size: var(--fs-600);
   color: var(--clr-gray);
   cursor: pointer;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, scale 0.1s ease-out;
 }
 .product .productInfo .quantity .quantityBtn:hover {
   color: var(--clr-white);
+}
+.product .productInfo .quantity .quantityBtn:active {
+  scale: 0.9;
 }/*# sourceMappingURL=index.css.map */

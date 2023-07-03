@@ -11,6 +11,7 @@
   --fs-600: clamp(1.25rem, calc(1.09rem + 0.76vw), 1.78rem);
   --fs-700: clamp(1.4rem, calc(1.23rem + 0.86vw), 2rem);
   --fs-800: clamp(1.58rem, calc(1.38rem + 0.97vw), 2.25rem);
+  --fs-900: clamp(2.84rem, calc(2.49rem + 1.74vw), 4.06rem);
 
   --ff-heading: "Syne", sans-serif;
   --ff-base: "Inter", sans-serif;
@@ -56,6 +57,7 @@ body {
   font-size: var(--fs-200);
 
   color: var(--clr-white);
+  overflow-x: hidden;
 }
 
 .navbar {
@@ -71,20 +73,7 @@ body {
   .logo {
     letter-spacing: 0.125rem;
     font-size: var(--fs-800);
-
-    color: transparent;
-    background-image: linear-gradient(
-      135deg,
-      rgba(247, 176, 84, 1) 0%,
-      rgba(214, 157, 160, 1) 25%,
-      rgb(243, 137, 137) 50%,
-      rgba(221, 161, 144, 1) 75%,
-      rgba(247, 176, 84, 1) 100%
-    );
-    background-clip: text;
-    -webkit-background-clip: text;
-    text-fill-color: transparent;
-    -webkit-text-fill-color: transparent;
+    color: var(--clr-white);
   }
 
   .cartIndicator {
@@ -93,7 +82,7 @@ body {
     #cartIcon {
       font-size: var(--fs-600);
       z-index: 10;
-      color: var(--clr-tan);
+      color: var(--clr-white);
       cursor: pointer;
     }
 
@@ -121,8 +110,39 @@ body {
   width: 100vw;
   height: calc(100vh - var(--nav-height));
 
-  display: flex;
-  justify-content: center;
+  margin-top: calc(var(--nav-height) / 0.75);
+  @include flexCenter(column);
+  gap: 1.25rem;
+
+  .cartTitle {
+    letter-spacing: -0.125rem;
+    font-size: var(--fs-900);
+    font-family: var(--ff-heading);
+    font-weight: var(--fw-heading-700);
+
+    color: transparent;
+    background-image: linear-gradient(
+      90deg,
+      var(--clr-white) 0%,
+      rgb(243, 137, 137) 50%,
+      var(--clr-white) 90%
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    text-fill-color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+@media (width <= 48rem) {
+  .cartContainer {
+    margin-top: 45vmax;
+    .product {
+      width: 75vw;
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
 }
 
 .product {
@@ -131,11 +151,27 @@ body {
   display: flex;
   height: fit-content;
 
-  padding: 1.35rem;
+  padding: 1.25rem;
 
   background-color: var(--clr-blackLight);
 
   border-radius: var(--radius);
+
+  picture {
+    @include flexCenter();
+  }
+
+  @media (width <= 48rem) {
+    picture {
+      text-align: center;
+      #productImg {
+        width: max-content;
+        object-position: center;
+        margin: 0 auto;
+        // height: 10rem;
+      }
+    }
+  }
 
   .productInfo {
     @include flexCenter();
@@ -156,25 +192,51 @@ body {
         font-weight: var(--fw-400);
         font-size: var(--fs-500);
       }
+
+      .productRemove {
+        @include flexCenter();
+        gap: 0.2rem;
+        margin-top: 0.75rem;
+        cursor: pointer;
+        font-size: var(--fs-200);
+        background-color: transparent;
+        outline: none;
+        border: none;
+        color: var(--clr-gray);
+        font-size: var(--fs-200);
+        transition: color 0.2s ease-out;
+
+        &:hover {
+          color: var(--clr-redish);
+        }
+
+        &:active {
+          scale: 0.95;
+        }
+      }
     }
 
     .quantity {
       @include flexCenter();
       gap: 2vmax;
 
-      font-size: var(--fs-300);
+      font-size: var(--fs-600);
 
       .quantityBtn {
         background-color: transparent;
         border: none;
         outline: none;
-        font-size: var(--fs-800);
+        font-size: var(--fs-600);
         color: var(--clr-gray);
         cursor: pointer;
-        transition: color 0.3s ease;
+        transition: color 0.3s ease, scale 0.1s ease-out;
 
         &:hover {
           color: var(--clr-white);
+        }
+
+        &:active {
+          scale: 0.9;
         }
       }
     }
