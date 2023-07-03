@@ -5,8 +5,6 @@ import { useGlobalContext } from "./context"
 function Product({ id, title, price, img, amount }) {
   const { increaseQuantity, decreaseQuantity, removeItem } = useGlobalContext()
 
-  const audio = new Audio("https://www.fesliyanstudios.com/play-mp3/11")
-
   return (
     <article className="product">
       <picture>
@@ -17,13 +15,7 @@ function Product({ id, title, price, img, amount }) {
           <h4 className="productRef">Ref: {id.slice(0, 17)} </h4>
           <h1 className="productName">{title}</h1>
           <h2 className="productPrice">$ {price}</h2>
-          <button
-            className="productRemove"
-            onClick={() => {
-              audio.play()
-              removeItem(id)
-            }}
-          >
+          <button className="productRemove" onClick={() => removeItem(id)}>
             remove
           </button>
         </div>
@@ -32,10 +24,7 @@ function Product({ id, title, price, img, amount }) {
           <button
             className="quantityBtn"
             id="decreaseBtn"
-            onClick={() => {
-              audio.play()
-              decreaseQuantity(id)
-            }}
+            onClick={() => decreaseQuantity(id)}
           >
             <AiOutlineMinus />
           </button>
@@ -43,10 +32,7 @@ function Product({ id, title, price, img, amount }) {
           <button
             className="quantityBtn"
             id="increaseBtn"
-            onClick={() => {
-              audio.play()
-              increaseQuantity(id)
-            }}
+            onClick={() => increaseQuantity(id)}
           >
             <AiOutlinePlus />
           </button>
