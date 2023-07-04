@@ -144,7 +144,7 @@ body {
   justify-content: center;
   flex-direction: column;
   min-width: 17.5rem;
-  width: 10vmin;
+  width: 30vmax;
   gap: 2rem;
   padding: 2rem;
   border-radius: var(--radius);
@@ -153,6 +153,7 @@ body {
   font-family: var(--ff-base);
 }
 .sidebar-overlay .sidebar .sidebar-card .sidebar-header {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -264,7 +265,6 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  background-color: hsla(66, 100%, 98%, 0.1);
   color: var(--clr-white);
   padding: 0.75rem;
   border-radius: 100%;
