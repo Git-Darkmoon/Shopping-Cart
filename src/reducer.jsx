@@ -35,6 +35,8 @@ function reducer(state, action) {
     const newProduct = { ...product, amount: product.amount++ }
     newCart.set(productID, newProduct)
 
+    console.log(newCart)
+
     return { ...state, cartInfo: newCart }
   }
 
