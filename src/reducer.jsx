@@ -32,7 +32,7 @@ function reducer(state, action) {
     const productID = action.payload.id
     const product = newCart.get(productID)
 
-    const newProduct = { ...product, amount: product.amount++ }
+    const newProduct = { ...product, amount: (product.amount += 1) }
     newCart.set(productID, newProduct)
 
     console.log(newProduct)
