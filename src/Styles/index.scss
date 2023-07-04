@@ -24,6 +24,7 @@
   --clr-blackDark: hsl(0, 0%, 7%);
   --clr-blackLight: hsl(0, 0%, 15%);
   --clr-gray: hsla(0, 0%, 67%, 0.5);
+  --clr-blacky: rgb(90, 90, 90);
   --clr-white: hsl(67, 100%, 98%);
   --clr-pink: hsl(294, 90%, 85%);
   --clr-purple: hsl(263, 82%, 75%);
@@ -31,6 +32,7 @@
   --clr-orange: hsl(34, 91%, 65%);
   --clr-redish: hsl(0, 82%, 75%);
   --clr-tan: hsl(357, 41%, 73%);
+  --clr-glass: hsla(0, 0%, 7%, 0.75);
 
   --nav-height: 6rem;
 
@@ -123,6 +125,123 @@ body {
   }
 }
 
+.sidebar-overlay {
+  width: 100vw;
+  height: 100vh;
+  z-index: 5;
+  position: fixed;
+  top: 0;
+  background-color: var(--clr-glass);
+
+  transition: all 0.3s ease;
+  visibility: hidden;
+  opacity: 0;
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+
+    width: 40vmax;
+    height: 100vh;
+    background-color: var(--clr-blackDark);
+    box-shadow: 0 0 120px 50px var(--clr-blackDark);
+    @include flexCenter();
+    transition: all 0.3s ease-out;
+
+    @media (width <= 48rem) {
+      width: 100vw;
+      padding-inline: 5rem;
+    }
+
+    .sidebar-card {
+      @include flexCenter(column);
+      min-width: 17.5rem;
+      width: 10vmin;
+
+      gap: 2rem;
+      padding: 2rem;
+      border-radius: var(--radius);
+      background-color: var(--clr-white);
+      color: var(--clr-blackDark);
+      font-family: var(--ff-base);
+
+      .sidebar-header {
+        @include flexCenter();
+        justify-content: space-between;
+        gap: 3rem;
+
+        .sidebar-title {
+          font-family: var(--ff-heading);
+          font-weight: var(--fw-heading-700);
+          font-size: var(--fs-700);
+        }
+
+        .sidebar-close_btn {
+          @include flexCenter();
+          background-color: transparent;
+          color: crimson;
+          border: none;
+          cursor: pointer;
+          font-size: var(--fs-700);
+          transition: color 0.3s ease;
+
+          &:hover {
+            color: var(--clr-tan);
+          }
+        }
+      }
+
+      .summary-flex {
+        width: 100%;
+        @include flexCenter();
+        justify-content: space-between;
+        color: var(--clr-blacky);
+
+        h2 {
+          font-weight: var(--fw-base-200);
+          font-family: var(--ff-base);
+          font-size: var(--fs-300);
+        }
+
+        .summary-price {
+          color: var(--clr-blackLight);
+          font-size: var(--fs-400);
+        }
+      }
+
+      .shipping {
+        width: 100%;
+        @include flexCenter();
+        justify-content: space-between;
+      }
+      .checkoutBtn {
+        width: 100%;
+        font-size: var(--fs-400);
+        background-color: var(--clr-tan);
+        padding-inline: 2rem;
+        padding-block: 1rem;
+        border: none;
+        border-radius: var(--radius);
+        cursor: pointer;
+        transition: scale 0.3s ease-in;
+
+        &:hover {
+          scale: 1.05;
+        }
+        &:active {
+          scale: 1;
+        }
+      }
+    }
+  }
+}
+
+.show-sideBar {
+  opacity: 1;
+  visibility: visible;
+}
+
 .navbar {
   width: 100vw;
   height: var(--nav-height);
@@ -132,6 +251,7 @@ body {
 
   font-family: var(--ff-heading);
   font-weight: 700;
+  z-index: 100;
 
   .logo {
     letter-spacing: 0.125rem;
@@ -141,6 +261,7 @@ body {
 
   .cartIndicator {
     position: relative;
+    cursor: pointer;
 
     #cartIcon {
       font-size: var(--fs-600);
