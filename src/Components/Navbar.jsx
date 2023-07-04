@@ -2,14 +2,14 @@ import { FaShoppingCart } from "react-icons/fa"
 import { useGlobalContext } from "./context"
 
 function Navbar() {
-  const { openSidebar } = useGlobalContext()
+  const { openSidebar, totalAmount } = useGlobalContext()
 
   return (
     <nav className="navbar">
       <div className="logo">iTech</div>
       <div className="cartIndicator">
         <FaShoppingCart id="cartIcon" onClick={openSidebar} />
-        <span id="cartAmount">2</span>
+        <span id="cartAmount">{totalAmount}</span>
       </div>
     </nav>
   )
