@@ -29,7 +29,7 @@ function Footer() {
         <li>
           <a
             className="footer-social__links"
-            href="https://github.com/Git-Darkmoon/R-M-v1.0/tree/main"
+            href="https://github.com/Git-Darkmoon/Shopping-Cart"
           >
             <AiFillFileMarkdown />
           </a>
