@@ -7,6 +7,8 @@ import {
   SHOW_DATA,
   REMOVE_ITEM,
   CLEAR_CART,
+  OPEN_SIDEBAR,
+  CLOSE_SIDEBAR,
 } from "../actions"
 
 const API_URL = "https://www.course-api.com/react-useReducer-cart-project"
@@ -15,6 +17,7 @@ const AppContext = createContext()
 
 const initialState = {
   cartInfo: new Map(),
+  isSideOpen: false,
 }
 
 export const AppProvider = ({ children }) => {
@@ -33,6 +36,13 @@ export const AppProvider = ({ children }) => {
 
   function clearCart() {
     dispatch({ type: CLEAR_CART })
+  }
+
+  function openSidebar() {
+    dispatch({ type: OPEN_SIDEBAR })
+  }
+  function closeSidebar() {
+    dispatch({ type: CLOSE_SIDEBAR })
   }
 
   async function fetchData() {
@@ -55,6 +65,8 @@ export const AppProvider = ({ children }) => {
         decreaseQuantity,
         removeItem,
         fetchData,
+        openSidebar,
+        closeSidebar,
       }}
     >
       {children}
