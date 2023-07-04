@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { createContext, useContext, useReducer, useEffect } from "react"
 import reducer from "../reducer"
+import { getTotals } from "../utils"
 import {
   INCREASE_QUANTITY,
   DECREASE_QUANTITY,
@@ -22,6 +23,8 @@ const initialState = {
 
 export const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
+
+  const { totalAmount, totalCost } = getTotals(state.cartInfo)
 
   function increaseQuantity(id) {
     dispatch({ type: INCREASE_QUANTITY, payload: { id } })
@@ -67,6 +70,8 @@ export const AppProvider = ({ children }) => {
         fetchData,
         openSidebar,
         closeSidebar,
+        totalAmount,
+        totalCost,
       }}
     >
       {children}
