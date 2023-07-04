@@ -4,6 +4,8 @@ import {
   INCREASE_QUANTITY,
   REMOVE_ITEM,
   SHOW_DATA,
+  OPEN_SIDEBAR,
+  CLOSE_SIDEBAR,
 } from "./actions"
 
 function reducer(state, action) {
@@ -50,6 +52,12 @@ function reducer(state, action) {
     return { ...state, cartInfo: new Map() }
   }
 
+  if (action.type === OPEN_SIDEBAR) {
+    return { ...state, isSideOpen: true }
+  }
+  if (action.type === CLOSE_SIDEBAR) {
+    return { ...state, isSideOpen: false }
+  }
   throw new Error(`No matching action type: ${action.type}`)
 }
 
