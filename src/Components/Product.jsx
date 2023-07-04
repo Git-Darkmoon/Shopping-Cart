@@ -24,10 +24,7 @@ function Product({ id, title, price, img, amount }) {
           <button
             className="quantityBtn"
             id="decreaseBtn"
-            onClick={() => {
-              console.log(`Decrease for ${id}`)
-              decreaseQuantity(id)
-            }}
+            onClick={() => decreaseQuantity(id)}
           >
             <AiOutlineMinus />
           </button>
@@ -35,11 +32,7 @@ function Product({ id, title, price, img, amount }) {
           <button
             className="quantityBtn"
             id="increaseBtn"
-            onClick={() => {
-              console.log(`Increase for ${id}`)
-
-              increaseQuantity(id)
-            }}
+            onClick={() => increaseQuantity(id)}
           >
             <AiOutlinePlus />
           </button>
